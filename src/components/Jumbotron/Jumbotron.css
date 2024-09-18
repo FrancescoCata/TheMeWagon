@@ -1,0 +1,39 @@
+.jumboContainer{
+    height: 100vh;
+    background: linear-gradient(rgba(15, 23, 43, .9), rgba(15, 23, 43, .9)), url('https://themewagon.github.io/restoran/img/bg-hero.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.jumboContent{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px
+}
+
+.leftJumbo{
+    width: 50%;
+    color: white;
+}
+
+.leftJumbo button{
+    background-color: #feaf39;
+    color:  white;
+    font-weight: 500;
+    font-size: 15px;
+    text-transform: uppercase;
+    padding: 12px;
+    border-radius: 2px;
+    width: 150px;
+}
+
+.jumboImg{
+    width: 50%;
+}
+
+.jumboImg img{
+    width: 100%;
+}

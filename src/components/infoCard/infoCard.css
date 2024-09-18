@@ -1,0 +1,12 @@
+.infoCardContainer{
+    width: 25%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 20px;
+    margin: 20px 20px;
+}
+
+.infoCardContainer:hover{
+    background-color: #feaf39;
+    color: white;
+    transition: background-color 0.7s ease, color 0.7s ease;
+}
