@@ -1,0 +1,89 @@
+.aboutUsContainer{
+    height: 90vh;
+    width: 100%;
+    display: flex;
+}
+
+.leftAboutUs{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    height: 100%;
+}
+
+.rightAboutUs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+
+.aboutUsImage{
+    width: 50%;
+    height: 50%;
+    position: relative;
+}
+
+.aboutUsImage img{
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+}
+
+.aboutUsImage:nth-child(2) img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80%;
+    height: 80%;
+}
+
+.aboutUsImage:nth-child(3) img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80%;
+    height: 80%;
+}
+
+.aboutUsStats{
+    width: 90%;
+}
+
+.readMoreBtn{
+    background-color: #feaf39;
+    color:  white;
+    font-weight: 500;
+    font-size: 15px;
+    text-transform: uppercase;
+    padding: 12px;
+    border-radius: 2px;
+    width: 150px;
+}
+
+.dynamicStatsAboutUs{
+    display: flex;
+}
+
+.experienceAboutUs{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 50%;
+    border-left: 5px solid #feaf39;
+    margin-bottom: 10px;
+}
+
+.chefsAboutUs{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 50%;
+    border-left: 5px solid #feaf39;
+    margin-bottom: 10px;
+}
+
+.experienceAboutUs h1, .chefsAboutUs h1{
+    margin-right: 20px;
+}

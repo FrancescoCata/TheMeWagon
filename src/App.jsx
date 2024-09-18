@@ -4,6 +4,7 @@ import './App.css';
 import Header from './header/Header';
 import Jumbotron from './components/Jumbotron/Jumbotron';
 import InfoCardSection from './infoCardSection/InfoCardSection';
+import AboutUsSection from './aboutUsSection/AboutUsSection';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Header/>
       <Jumbotron/>
       <InfoCardSection/>
+      <AboutUsSection/>
     </div>
   );
 }
