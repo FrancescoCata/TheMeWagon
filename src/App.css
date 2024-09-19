@@ -3,3 +3,18 @@ width: 90%;
 margin: 0 auto;
 }
 
+.flex{
+    display: flex;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+.justify-between{
+    justify-content: space-between;
+}
+
+.align-center{
+    align-items: center;
+}
