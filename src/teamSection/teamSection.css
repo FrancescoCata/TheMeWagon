@@ -1,0 +1,90 @@
+.team-member-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .team-member-container .team-member-card {
+    flex: 1 1 calc(25% - 20px);
+    max-width: calc(25% - 20px);
+    min-width: 250px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: height 0.3s ease, box-shadow 0.3s ease;
+    height: 300px;
+  }
+  
+  .team-member-card:hover {
+    height: 350px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .team-member-card .profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .team-member-card:hover .profile-image {
+    transform: scale(1.1); 
+  }
+  
+  .member-name {
+    font-size: 1.5rem;
+    margin: 10px 0 5px;
+  }
+  
+  .member-role {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .social-icons {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .team-member-card:hover .social-icons {
+    opacity: 1;
+  }
+  
+  .icon {
+    font-size: 1.5rem;
+    color: #555;
+    transition: color 0.3s ease;
+  }
+  
+  .icon:hover {
+    color: #0073b1;
+  }
+  
+  @media (max-width: 768px) {
+    .team-member-container .team-member-card {
+      flex: 1 1 calc(50% - 20px);
+      max-width: calc(50% - 20px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .team-member-container .team-member-card {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  }
+  
