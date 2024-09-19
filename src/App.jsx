@@ -6,6 +6,7 @@ import Jumbotron from './components/Jumbotron/Jumbotron';
 import InfoCardSection from './infoCardSection/InfoCardSection';
 import AboutUsSection from './aboutUsSection/AboutUsSection';
 import Menu from './menu/Menu';
+import BookATable from './bookATableSection/BookATableSection';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <InfoCardSection/>
       <AboutUsSection/>
       <Menu/>
+      <BookATable/>
     </div>
   );
 }
