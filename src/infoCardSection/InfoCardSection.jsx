@@ -1,6 +1,3 @@
-// -- STYLE
-import "./infoCardSection.css";
-
 // -- COMPONENTS
 import InfoCard from "../components/infoCard/InfoCard";
 
@@ -42,9 +39,9 @@ export default function InfoCardSection() {
     });
   };
 
-  return(
-    <div className="infoCardSection">
-        {renderInfoCard()}
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+      {renderInfoCard()}
     </div>
-  )
+  );
 }
