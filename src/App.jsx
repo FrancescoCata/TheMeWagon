@@ -1,4 +1,5 @@
 import './App.css';
+import './tailwind-output.css';
 
 // -- COMPONENTS
 import Header from './header/Header';
@@ -8,6 +9,7 @@ import AboutUsSection from './aboutUsSection/AboutUsSection';
 import Menu from './menu/Menu';
 import BookATable from './bookATableSection/BookATableSection';
 import TeamSection from './teamSection/TeamSection';
+import TestimonialSection from './testimonialSection/TestimonialSection';
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
       <Menu/>
       <BookATable/>
       <TeamSection/>
+      <TestimonialSection/>
     </div>
   );
 }

@@ -74,11 +74,11 @@ export default function Menu() {
   return (
     <div className="foodMenuContainer">
       <div className="foodMenuContent">
-        <div className="foodMenuHeader">
-          <div className="foodMenuTopTitle">
-            <div className="foodMenuDivisor"></div>
+        <div className="sectionHeader">
+          <div className="sectionTopTitle">
+            <div className="sectionTitleDivisor"></div>
             <p>Food Menu</p>
-            <div className="foodMenuDivisor"></div>
+            <div className="sectionTitleDivisor"></div>
           </div>
           <h2>Most Popular Items</h2>
         </div>
