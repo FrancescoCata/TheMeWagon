@@ -21,14 +21,12 @@ export default function AboutUsSection() {
         <div className="relative w-1/2 h-1/2 p-1" key={key}>
           <img
             src={item.img}
-            className={`w-full h-full object-cover ${
+            className={`object-cover ${
               key === 1
                 ? "relative transform translate-x-[0%] translate-y-[25%] w-[80%] h-[80%]"
-                : ""
-            } ${
-              key === 2
+                : key === 2
                 ? "relative transform translate-x-[25%] translate-y-[0%] w-[80%] h-[80%]"
-                : ""
+                : "w-full h-full"
             }`}
             alt={`about-us-${key}`}
           />
