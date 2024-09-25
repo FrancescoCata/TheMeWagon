@@ -40,9 +40,9 @@ export default function TeamSection() {
     <div className="bg-gray-100 py-12 h-fit">
       <div className="text-center mb-12">
         <div className="flex items-center justify-center space-x-4">
-          <div className="h-0.5 w-16 bg-orange-500"></div>
-          <p className="text-orange-500">Team Members</p>
-          <div className="h-0.5 w-16 bg-orange-500"></div>
+          <div className="h-0.5 w-16 bg-[#feaf39]"></div>
+          <p className="text-[#feaf39]">Team Members</p>
+          <div className="h-0.5 w-16 bg-[#feaf39]"></div>
         </div>
         <h2 className="text-3xl font-semibold">Our Master Chefs</h2>
       </div>

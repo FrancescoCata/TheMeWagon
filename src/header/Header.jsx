@@ -43,7 +43,7 @@ export default function Header() {
     >
       <div className="container flex justify-between items-center mx-auto">
         <div className="flex items-center">
-          <i className="fa-solid fa-tree text-white"></i>
+          <i className="fa fa-utensils text-white"></i>
           <a href="#" className="text-white ml-2 font-bold text-xl">
             RESTORAN
           </a>

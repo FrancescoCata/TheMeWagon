@@ -4,7 +4,7 @@ import InfoCard from "../components/infoCard/InfoCard";
 // -- MOCK ARRAY
 const infoCardArr = [
   {
-    img: "fa-user-tie",
+    img: "fa fa-user-tie",
     title: "Master Chefs",
     text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus, voluptatem. Aliquam quod aut eligendi et quidem, voluptate doloribus ut dolores.",
   },

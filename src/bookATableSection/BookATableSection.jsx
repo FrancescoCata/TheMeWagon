@@ -21,7 +21,7 @@ export default function BookATable() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row p-4">
+    <div className="flex flex-col md:flex-row">
       {/* Left Section (Video Background) */}
       <div className="relative w-full md:w-1/2 min-h-[500px] bg-cover bg-center" style={{
         backgroundImage: `linear-gradient(rgba(15, 23, 43, 0.1), rgba(15, 23, 43, 0.1)), url('https://themewagon.github.io/restoran/img/video.jpg')`

@@ -1,5 +1,5 @@
-import './App.css';
 import './tailwind-output.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 // -- COMPONENTS
 import Header from './header/Header';
@@ -10,10 +10,11 @@ import Menu from './menu/Menu';
 import BookATable from './bookATableSection/BookATableSection';
 import TeamSection from './teamSection/TeamSection';
 import TestimonialSection from './testimonialSection/TestimonialSection';
+import Footer from './footer/Footer';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App w-full lg:w-[90%] bg-white mx-auto">
       <Header/>
       <Jumbotron/>
       <InfoCardSection/>
@@ -22,6 +23,7 @@ function App() {
       <BookATable/>
       <TeamSection/>
       <TestimonialSection/>
+      <Footer/>
     </div>
   );
 }

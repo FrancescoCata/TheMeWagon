@@ -67,10 +67,10 @@ export default function TestimonialSection() {
       <div className="container mx-auto text-center mb-8">
         {/* Section Title */}
         <div className="text-center mb-4">
-          <div className="flex justify-center items-center space-x-2">
-            <div className="border-t-2 w-16"></div>
-            <p className="uppercase text-gray-600">Testimonial</p>
-            <div className="border-t-2 w-16"></div>
+          <div className="flex items-center justify-center space-x-4">
+            <div className="h-0.5 w-16 bg-[#feaf39]"></div>
+            <p className="text-[#feaf39]">Testimonial</p>
+            <div className="h-0.5 w-16 bg-[#feaf39]"></div>
           </div>
           <h2 className="text-3xl font-semibold text-gray-800">
             Our Clients Say!!!
@@ -99,7 +99,12 @@ export default function TestimonialSection() {
           const isMiddleCard = index === activeIndex;
 
           return (
-            <SwiperSlide key={index} className={`pb-12 ${isMiddleCard ? "transform scale-100" : "transform scale-90"}`}>
+            <SwiperSlide
+              key={index}
+              className={`pb-12 ${
+                isMiddleCard ? "transform scale-100" : "transform scale-90"
+              }`}
+            >
               <TestimonialCard
                 quote={item.quote}
                 fullName={item.name}

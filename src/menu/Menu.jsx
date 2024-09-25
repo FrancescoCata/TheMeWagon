@@ -74,9 +74,9 @@ export default function Menu() {
   };
 
   const menuItems = [
-    { label: "Breakfast", icon: 'FaCoffee' },
-    { label: "Lunch", icon: 'FaHamburger' },
-    { label: "Dinner", icon: 'FaUtensils' },
+    { label: "Breakfast", icon: 'fa fa-coffee' },
+    { label: "Lunch", icon: 'fa fa-coffee' },
+    { label: "Dinner", icon: 'fa fa-coffee' },
   ];
 
   return (
@@ -107,7 +107,7 @@ export default function Menu() {
               }`}
               onClick={() => handleMenuClick(menu.label)}
             >
-              <Icon className="mr-2" /> {/* Icon next to text */}
+              <i className={`${Icon} text-[#feaf39]`}></i>
               <p className="text-lg font-semibold">{menu.label}</p>
             </div>
           );
