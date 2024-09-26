@@ -1,9 +1,11 @@
+// App.js
 import "./tailwind-output.css";
 import "font-awesome/css/font-awesome.min.css";
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 // -- COMPONENTS
-import Header from "./header/Header";
+import Layout from "./Layout";
 import Jumbotron from "./components/Jumbotron/Jumbotron";
 import InfoCardSection from "./infoCardSection/InfoCardSection";
 import AboutUsSection from "./aboutUsSection/AboutUsSection";
@@ -11,7 +13,6 @@ import Menu from "./menu/Menu";
 import BookATable from "./bookATableSection/BookATableSection";
 import TeamSection from "./teamSection/TeamSection";
 import TestimonialSection from "./testimonialSection/TestimonialSection";
-import Footer from "./footer/Footer";
 
 function App() {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,16 +35,36 @@ function App() {
   }, []);
 
   return (
-    <div className="App w-full lg:w-[90%] bg-white mx-auto">
-      <Header />
-      <Jumbotron />
-      <InfoCardSection />
-      <AboutUsSection />
-      <Menu />
-      <BookATable />
-      <TeamSection />
-      <TestimonialSection />
-      <Footer />
+    <Layout>
+      <Routes>
+        {/* Home route shows all sections */}
+        <Route
+          path="/"
+          element={
+            <>
+              <InfoCardSection />
+              <AboutUsSection />
+              <Menu />
+              <BookATable />
+              <TeamSection />
+              <TestimonialSection />
+            </>
+          }
+        />
+
+        {/* Individual section routes */}
+        <Route path="/info" element={<InfoCardSection />} />
+        <Route path="/about" element={
+          <>
+          <AboutUsSection />
+          <TeamSection/>
+          </>
+        } />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/book" element={<BookATable />} />
+        <Route path="/team" element={<TeamSection />} />
+        <Route path="/testimonials" element={<TestimonialSection />} />
+      </Routes>
 
       {/* Scroll to Top Button */}
       {isVisible && (
@@ -55,7 +76,7 @@ function App() {
           <i className="fa fa-arrow-up"></i>
         </button>
       )}
-    </div>
+    </Layout>
   );
 }
 

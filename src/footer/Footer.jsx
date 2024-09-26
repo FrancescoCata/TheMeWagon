@@ -99,7 +99,7 @@ export default function Footer() {
         <div className="border-t border-solid border-gray-600 mt-8" />
       </div>
 
-      <div className="border-t border-gray-600 mt-4 py-4">
+      <div className="border-t border-gray-600 mt-4 p-4">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between">
           <div>
             <div className="text-sm text-gray-400 pb-4">

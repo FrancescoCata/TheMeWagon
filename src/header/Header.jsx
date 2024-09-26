@@ -1,5 +1,7 @@
 // -- HOOKS
 import { useState, useEffect } from "react";
+// -- COMPONENTS
+import { Link } from "react-router-dom";
 
 export default function Header() {
   // # STATE
@@ -53,15 +55,36 @@ export default function Header() {
       <div className="container flex justify-between items-center mx-auto">
         <div className="flex items-center">
           <i className="fa fa-utensils text-white"></i>
-          <a href="#" className="text-[#feaf39] ml-2 font-bold text-3xl"> 
+          <a href="#" className="text-[#feaf39] ml-2 font-bold text-3xl">
             RESTORAN
           </a>
         </div>
         <div className="hidden lg:flex space-x-6 items-center">
-          <p className="text-white cursor-pointer">HOME</p>
-          <p className="text-white cursor-pointer">ABOUT</p>
-          <p className="text-white cursor-pointer">SERVICE</p>
-          <p className="text-white cursor-pointer">MENU</p>
+          {/* Use Link to enable navigation */}
+          <Link
+            to="/"
+            className="text-white cursor-pointer hover:text-yellow-500"
+          >
+            HOME
+          </Link>
+          <Link
+            to="/about"
+            className="text-white cursor-pointer hover:text-yellow-500"
+          >
+            ABOUT
+          </Link>
+          <Link
+            to="/info"
+            className="text-white cursor-pointer hover:text-yellow-500"
+          >
+            SERVICE
+          </Link>
+          <Link
+            to="/menu"
+            className="text-white cursor-pointer hover:text-yellow-500"
+          >
+            MENU
+          </Link>
           <div className="relative">
             <div
               className="text-white cursor-pointer"
@@ -71,16 +94,34 @@ export default function Header() {
             </div>
             {openPagesMenu && (
               <div className="absolute top-full left-0 bg-white text-black shadow-md p-2 rounded-lg">
-                <p className="hover:bg-gray-100 p-2">Booking</p>
-                <p className="hover:bg-gray-100 p-2">Our Team</p>
-                <p className="hover:bg-gray-100 p-2">Testimonial</p>
+                {/* Dropdown menu links */}
+                <Link to="/book" className="hover:bg-gray-100 p-2 block">
+                  Booking
+                </Link>
+                <Link to="/team" className="hover:bg-gray-100 p-2 block">
+                  Our Team
+                </Link>
+                <Link
+                  to="/testimonials"
+                  className="hover:bg-gray-100 p-2 block"
+                >
+                  Testimonial
+                </Link>
               </div>
             )}
           </div>
-          <p className="text-white cursor-pointer">CONTACT</p>
-          <button className="bg-[#feaf39] text-white py-2 px-4 rounded">
+          <Link
+            to="/contact"
+            className="text-white cursor-pointer hover:text-yellow-500"
+          >
+            CONTACT
+          </Link>
+          <Link
+            to="/book"
+            className="bg-[#feaf39] text-white py-2 px-4 rounded hover:bg-yellow-600 transition"
+          >
             BOOK A TABLE
-          </button>
+          </Link>
         </div>
         <div className="lg:hidden">
           <button onClick={handleMenu} className="text-white">

@@ -1,22 +1,54 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+// -- COMPONENTS
+import App from "./App";
+import AboutUsSection from "./aboutUsSection/AboutUsSection";
+import InfoCardSection from "./infoCardSection/InfoCardSection";
+import Menu from "./menu/Menu";
+import BookATable from "./bookATableSection/BookATableSection";
+import TeamSection from "./teamSection/TeamSection";
+import TestimonialSection from "./testimonialSection/TestimonialSection";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <App />,
+    children: [
+      {
+        path: "/about",
+        element: <AboutUsSection />,
+      },
+      {
+        path: "/info",
+        element: <InfoCardSection/>
+      },
+      {
+        path: "/menu",
+        element: <Menu/>
+      },
+      {
+        path: "/book",
+        element: <BookATable/>
+      },
+      {
+        path: "/team",
+        element: <TeamSection/>
+      },
+      {
+        path: "/testimonials",
+        element: <TestimonialSection/>
+      }
+    ],
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
