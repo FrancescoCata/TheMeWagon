@@ -4,25 +4,25 @@ import InfoCard from "../components/infoCard/InfoCard";
 // -- MOCK ARRAY
 const infoCardArr = [
   {
-    img: "fa fa-user-tie",
+    img: "fa fa-quote-left",
     title: "Master Chefs",
-    text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus, voluptatem. Aliquam quod aut eligendi et quidem, voluptate doloribus ut dolores.",
+    text: "Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam.",
   },
   {
-    img: "fa-utensils",
+    img: "fa fa-quote-left",
     title: "Quality Food",
-    text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus, voluptatem. Aliquam quod aut eligendi et quidem, voluptate doloribus ut dolores.",
+    text: "Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam.",
   },
   {
-    img: "fa-cart-plus",
+    img: "fa fa-quote-left",
     title: "Online Order",
-    text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus, voluptatem. Aliquam quod aut eligendi et quidem, voluptate doloribus ut dolores.",
+    text: "Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam.",
   },
   {
-    img: "fa-headset",
+    img: "fa fa-quote-left",
     title: "24/7 Service",
-    text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus, voluptatem. Aliquam quod aut eligendi et quidem, voluptate doloribus ut dolores.",
-  },
+    text: "Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam.",
+  }
 ];
 
 export default function InfoCardSection() {

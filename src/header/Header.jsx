@@ -6,6 +6,7 @@ export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
   const [openPagesMenu, setOpenPagesMenu] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
 
   // # FUNCTIONS
   const handleMenu = () => {
@@ -16,43 +17,51 @@ export default function Header() {
     setOpenPagesMenu((prevState) => !prevState);
   };
 
-  // # EFFECT FOR SCROLL
+  // # EFFECT FOR SCROLL AND RESIZE
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 50 && isLargeScreen) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
     };
 
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024);
+    };
+
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [isLargeScreen]);
 
   return (
     <div
       className={`${
-        isScrolled
+        isScrolled || !isLargeScreen
           ? "fixed w-full left-0 bg-[#0F172B] shadow-lg transition-all duration-300"
           : "absolute w-[90%] bg-transparent"
-      } top-0 z-50 p-4 mx-auto`}
+      } top-0 z-50 p-4 mx-auto ${
+        !isLargeScreen ? "bg-[#0f172b] w-full absolute" : ""
+      }`}
     >
       <div className="container flex justify-between items-center mx-auto">
         <div className="flex items-center">
           <i className="fa fa-utensils text-white"></i>
-          <a href="#" className="text-white ml-2 font-bold text-xl">
+          <a href="#" className="text-[#feaf39] ml-2 font-bold text-3xl"> 
             RESTORAN
           </a>
         </div>
         <div className="hidden lg:flex space-x-6 items-center">
-          <p className="text-white">HOME</p>
-          <p className="text-white">ABOUT</p>
-          <p className="text-white">SERVICE</p>
-          <p className="text-white">MENU</p>
+          <p className="text-white cursor-pointer">HOME</p>
+          <p className="text-white cursor-pointer">ABOUT</p>
+          <p className="text-white cursor-pointer">SERVICE</p>
+          <p className="text-white cursor-pointer">MENU</p>
           <div className="relative">
             <div
               className="text-white cursor-pointer"
@@ -68,7 +77,7 @@ export default function Header() {
               </div>
             )}
           </div>
-          <p className="text-white">CONTACT</p>
+          <p className="text-white cursor-pointer">CONTACT</p>
           <button className="bg-[#feaf39] text-white py-2 px-4 rounded">
             BOOK A TABLE
           </button>
@@ -85,7 +94,10 @@ export default function Header() {
           <a className="block py-2 text-black">ABOUT</a>
           <a className="block py-2 text-black">SERVICE</a>
           <a className="block py-2 text-black">MENU</a>
-          <div className="block py-2 text-black cursor-pointer" onClick={handlePagesMenu}>
+          <div
+            className="block py-2 text-black cursor-pointer"
+            onClick={handlePagesMenu}
+          >
             PAGES
           </div>
           {openPagesMenu && (

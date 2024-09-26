@@ -46,7 +46,7 @@ export default function TeamSection() {
         </div>
         <h2 className="text-3xl font-semibold">Our Master Chefs</h2>
       </div>
-      <div className="flex flex-wrap justify-center gap-8">
+      <div className="flex flex-wrap justify-center gap-4">
         {renderMembers()}
       </div>
     </div>

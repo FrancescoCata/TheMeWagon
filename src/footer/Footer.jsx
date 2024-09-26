@@ -2,65 +2,34 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer class="bg-[#0f172b] text-white py-8">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-[#0f172b] text-white py-8">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center space-x-4 mb-4">
               <p className="text-[#feaf39]">Company</p>
               <div className="h-0.5 w-16 bg-[#feaf39]"></div>
             </div>
             <ul className="space-y-2">
-              <li>
-                <motion.a
-                  href="#"
-                  whileHover={{ letterSpacing: "0.05em" }}
-                  transition={{ duration: 0.2 }}
-                  className="block"
-                >
-                  <i class="fa fa-chevron-right mr-2"></i>About Us
-                </motion.a>
-              </li>
-              <li>
-                <motion.a
-                  href="#"
-                  whileHover={{ letterSpacing: "0.05em" }}
-                  transition={{ duration: 0.2 }}
-                  className="block"
-                >
-                  <i class="fa fa-chevron-right mr-2"></i>Contact us
-                </motion.a>
-              </li>
-              <li>
-                <motion.a
-                  href="#"
-                  whileHover={{ letterSpacing: "0.05em" }}
-                  transition={{ duration: 0.2 }}
-                  className="block"
-                >
-                  <i class="fa fa-chevron-right mr-2"></i>Reservation
-                </motion.a>
-              </li>
-              <li>
-                <motion.a
-                  href="#"
-                  whileHover={{ letterSpacing: "0.05em" }}
-                  transition={{ duration: 0.2 }}
-                  className="block"
-                >
-                  <i class="fa fa-chevron-right mr-2"></i>Privacy Policy
-                </motion.a>
-              </li>
-              <li>
-                <motion.a
-                  href="#"
-                  whileHover={{ letterSpacing: "0.05em" }}
-                  transition={{ duration: 0.2 }}
-                  className="block"
-                >
-                  <i class="fa fa-chevron-right mr-2"></i>Terms & Conditions
-                </motion.a>
-              </li>
+              {[
+                "About Us",
+                "Contact us",
+                "Reservation",
+                "Privacy Policy",
+                "Terms & Conditions",
+              ].map((item) => (
+                <li key={item}>
+                  <motion.a
+                    href="#"
+                    whileHover={{ letterSpacing: "0.05em" }}
+                    transition={{ duration: 0.2 }}
+                    className="block"
+                  >
+                    <i className="fa fa-chevron-right mr-2"></i>
+                    {item}
+                  </motion.a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -69,36 +38,23 @@ export default function Footer() {
               <p className="text-[#feaf39]">Contact</p>
               <div className="h-0.5 w-16 bg-[#feaf39]"></div>
             </div>
-            <ul class="space-y-2">
+            <ul className="space-y-2">
               <li>Email: info@company.com</li>
               <li>Phone: +123 456 789</li>
               <li>Address: 1234 Street Name, City</li>
               <li>
-                <div class="flex space-x-2 mt-2">
-                  <a
-                    href="#"
-                    class="flex items-center justify-center w-9 h-9 rounded-full border border-solid border-white text-white hover:bg-white hover:text-[#feaf39] transition-colors duration-300"
-                  >
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                  <a
-                    href="#"
-                    class="flex items-center justify-center w-9 h-9 rounded-full border border-solid border-white text-white hover:bg-white hover:text-[#feaf39] transition-colors duration-300"
-                  >
-                    <i class="fa fa-facebook-f"></i>
-                  </a>
-                  <a
-                    href="#"
-                    class="flex items-center justify-center w-9 h-9 rounded-full border border-solid border-white text-white hover:bg-white hover:text-[#feaf39] transition-colors duration-300"
-                  >
-                    <i class="fa fa-youtube"></i>
-                  </a>
-                  <a
-                    href="#"
-                    class="flex items-center justify-center w-9 h-9 rounded-full border border-solid border-white text-white hover:bg-white hover:text-[#feaf39] transition-colors duration-300"
-                  >
-                    <i class="fa fa-linkedin"></i>
-                  </a>
+                <div className="flex space-x-2 mt-2">
+                  {["twitter", "facebook-f", "youtube", "linkedin"].map(
+                    (platform) => (
+                      <a
+                        key={platform}
+                        href="#"
+                        className="flex items-center justify-center w-9 h-9 rounded-full border border-solid border-white text-white hover:bg-white hover:text-[#feaf39] transition-colors duration-300"
+                      >
+                        <i className={`fa fa-${platform}`}></i>
+                      </a>
+                    )
+                  )}
                 </div>
               </li>
             </ul>
@@ -138,25 +94,27 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
+        {/* Divisor */}
+        <div className="border-t border-solid border-gray-600 mt-8" />
       </div>
-      <div class="border-t border-gray-600 mt-8 py-4">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center">
-          <div class="text-sm text-gray-400">
-            &copy; 2024 SiteName. All rights reserved.
+
+      <div className="border-t border-gray-600 mt-4 py-4">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between">
+          <div>
+            <div className="text-sm text-gray-400 pb-4">
+              &copy; 2024 SiteName. All rights reserved.
+            </div>
+            <div className="text-sm text-gray-400">
+              &copy; 2024 SiteName. All rights reserved.
+            </div>
           </div>
-          <div class="flex space-x-6 text-sm text-gray-400 mt-4 sm:mt-0">
-            <a href="#" class="hover:underline">
-              Home
-            </a>
-            <a href="#" class="hover:underline">
-              Cookies
-            </a>
-            <a href="#" class="hover:underline">
-              Help
-            </a>
-            <a href="#" class="hover:underline">
-              FAQs
-            </a>
+          <div className="flex space-x-6 text-sm text-gray-400sm:mt-0">
+            {["Home", "Cookies", "Help", "FAQs"].map((item) => (
+              <a key={item} href="#" className="text-white text-md">
+                {item}
+              </a>
+            ))}
           </div>
         </div>
       </div>

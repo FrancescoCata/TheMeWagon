@@ -45,12 +45,15 @@ export default function AboutUsSection() {
       <div className="flex justify-center items-center w-full lg:w-1/2 h-auto lg:h-full">
         <div className="w-11/12 my-8 lg:my-0">
           <div>
-            <p className="text-lg font-medium text-gray-600">About Us</p>
+            <div className="flex items-center mb-4">
+              <p className="text-[#feaf39] font-medium pr-2">About Us</p>
+              <div className="w-12 h-[2px] bg-[#feaf39]"></div>
+            </div>
             <h2 className="text-4xl font-bold text-black my-2">
               Welcome to Restoran
             </h2>
           </div>
-          <div className="my-4 space-y-3 text-gray-600">
+          <div className="my-4 space-y-6 text-gray-600">
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
               Consectetur accusamus dolores possimus nemo, labore voluptatum
@@ -65,7 +68,7 @@ export default function AboutUsSection() {
           <div>
             <div className="flex flex-col lg:flex-row">
               {/* First stat (Years of Experience) */}
-              <div className="flex items-center border-l-4 lg:w-1/2 border-[#feaf39] border-solid mb-4 pl-4">
+              <div className="flex items-center border-l-4 lg:w-1/2 border-[#feaf39] border-solid mb-4 pl-4 py-4">
                 <h1 className="text-5xl font-bold text-[#feaf39] mr-5">15</h1>
                 <div>
                   <p className="font-medium">Years of</p>
@@ -74,7 +77,7 @@ export default function AboutUsSection() {
               </div>
 
               {/* Second stat (Master Chefs) */}
-              <div className="flex items-center border-l-4 lg:w-1/2 border-[#feaf39] border-solid mb-4 pl-4">
+              <div className="flex items-center border-l-4 lg:w-1/2 border-[#feaf39] border-solid mb-4 pl-4 py-4">
                 <h1 className="text-5xl font-bold text-[#feaf39] mr-5">50</h1>
                 <div>
                   <p className="font-medium">Popular</p>
@@ -83,7 +86,7 @@ export default function AboutUsSection() {
               </div>
             </div>
             <div>
-              <button className="bg-[#feaf39] text-white font-medium uppercase text-sm py-3 px-6 rounded">
+              <button className="bg-[#feaf39] text-white font-medium uppercase text-md py-4 px-12 rounded">
                 READ MORE
               </button>
             </div>
