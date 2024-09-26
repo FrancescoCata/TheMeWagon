@@ -13,6 +13,7 @@ import Menu from "./menu/Menu";
 import BookATable from "./bookATableSection/BookATableSection";
 import TeamSection from "./teamSection/TeamSection";
 import TestimonialSection from "./testimonialSection/TestimonialSection";
+import ContactUs from "./contactUs/ContactUs";
 
 function App() {
   const [isVisible, setIsVisible] = useState(false);
@@ -64,6 +65,7 @@ function App() {
         <Route path="/book" element={<BookATable />} />
         <Route path="/team" element={<TeamSection />} />
         <Route path="/testimonials" element={<TestimonialSection />} />
+        <Route path="contact-us" element={<ContactUs/>}/>
       </Routes>
 
       {/* Scroll to Top Button */}

@@ -111,7 +111,7 @@ export default function Header() {
             )}
           </div>
           <Link
-            to="/contact"
+            to="/contact-us"
             className="text-white cursor-pointer hover:text-yellow-500"
           >
             CONTACT

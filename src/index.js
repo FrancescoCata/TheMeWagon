@@ -11,6 +11,7 @@ import Menu from "./menu/Menu";
 import BookATable from "./bookATableSection/BookATableSection";
 import TeamSection from "./teamSection/TeamSection";
 import TestimonialSection from "./testimonialSection/TestimonialSection";
+import ContactUs from "./contactUs/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/testimonials",
         element: <TestimonialSection/>
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs/>
       }
     ],
   },
