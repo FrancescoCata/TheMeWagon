@@ -1,5 +1,5 @@
 // Layout.js
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import Jumbotron from "./components/Jumbotron/Jumbotron";
@@ -8,7 +8,11 @@ import { useLocation } from "react-router";
 
 const Layout = ({ children }) => {
 
-    const location = useLocation();
+  const location = useLocation();
+
+  useEffect(() =>{
+    window.scrollTo(0,0)
+  },[location])
 
   return (
     <div className="App w-full lg:w-[90%] bg-white mx-auto">

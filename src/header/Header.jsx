@@ -19,6 +19,12 @@ export default function Header() {
     setOpenPagesMenu((prevState) => !prevState);
   };
 
+  // Closes menu after clicking on a link
+  const handleLinkClick = () => {
+    setOpenMenu(false);
+    setOpenPagesMenu(false); // In case pages submenu is open
+  };
+
   // # EFFECT FOR SCROLL AND RESIZE
   useEffect(() => {
     const handleScroll = () => {
@@ -64,24 +70,28 @@ export default function Header() {
           <Link
             to="/"
             className="text-white cursor-pointer hover:text-yellow-500"
+            onClick={handleLinkClick}
           >
             HOME
           </Link>
           <Link
             to="/about"
             className="text-white cursor-pointer hover:text-yellow-500"
+            onClick={handleLinkClick}
           >
             ABOUT
           </Link>
           <Link
             to="/info"
             className="text-white cursor-pointer hover:text-yellow-500"
+            onClick={handleLinkClick}
           >
             SERVICE
           </Link>
           <Link
             to="/menu"
             className="text-white cursor-pointer hover:text-yellow-500"
+            onClick={handleLinkClick}
           >
             MENU
           </Link>
@@ -95,15 +105,24 @@ export default function Header() {
             {openPagesMenu && (
               <div className="absolute top-full left-0 bg-white text-black shadow-md p-2 rounded-lg">
                 {/* Dropdown menu links */}
-                <Link to="/book" className="hover:bg-gray-100 p-2 block">
+                <Link
+                  to="/book"
+                  className="hover:bg-gray-100 p-2 block"
+                  onClick={handleLinkClick}
+                >
                   Booking
                 </Link>
-                <Link to="/team" className="hover:bg-gray-100 p-2 block">
+                <Link
+                  to="/team"
+                  className="hover:bg-gray-100 p-2 block"
+                  onClick={handleLinkClick}
+                >
                   Our Team
                 </Link>
                 <Link
                   to="/testimonials"
                   className="hover:bg-gray-100 p-2 block"
+                  onClick={handleLinkClick}
                 >
                   Testimonial
                 </Link>
@@ -113,12 +132,14 @@ export default function Header() {
           <Link
             to="/contact-us"
             className="text-white cursor-pointer hover:text-yellow-500"
+            onClick={handleLinkClick}
           >
             CONTACT
           </Link>
           <Link
             to="/book"
             className="bg-[#feaf39] text-white py-2 px-4 rounded hover:bg-yellow-600 transition"
+            onClick={handleLinkClick}
           >
             BOOK A TABLE
           </Link>
@@ -130,28 +151,80 @@ export default function Header() {
         </div>
       </div>
       {openMenu && (
-        <div className="lg:hidden bg-white text-black p-4">
-          <a className="block py-2 text-black">HOME</a>
-          <a className="block py-2 text-black">ABOUT</a>
-          <a className="block py-2 text-black">SERVICE</a>
-          <a className="block py-2 text-black">MENU</a>
+        <div className="lg:hidden bg-[#0f172b] text-white p-4">
+          <Link
+            to="/"
+            className="block py-2 text-white"
+            onClick={handleLinkClick}
+          >
+            HOME
+          </Link>
+          <Link
+            to="/about"
+            className="block py-2 text-white"
+            onClick={handleLinkClick}
+          >
+            ABOUT
+          </Link>
+          <Link
+            to="/info"
+            className="block py-2 text-white"
+            onClick={handleLinkClick}
+          >
+            SERVICE
+          </Link>
+          <Link
+            to="/menu"
+            className="block py-2 text-white"
+            onClick={handleLinkClick}
+          >
+            MENU
+          </Link>
           <div
-            className="block py-2 text-black cursor-pointer"
+            className="block py-2 text-white cursor-pointer"
             onClick={handlePagesMenu}
           >
             PAGES
           </div>
           {openPagesMenu && (
-            <div className="">
-              <p className="py-2 text-black">Booking</p>
-              <p className="py-2 text-black">Our Team</p>
-              <p className="py-2 text-black">Testimonial</p>
+            <div className="bg-white p-4">
+              <Link
+                to="/book"
+                className="py-2 block text-black"
+                onClick={handleLinkClick}
+              >
+                Booking
+              </Link>
+              <Link
+                to="/team"
+                className="py-2 block text-black"
+                onClick={handleLinkClick}
+              >
+                Our Team
+              </Link>
+              <Link
+                to="/testimonials"
+                className="py-2 block text-black"
+                onClick={handleLinkClick}
+              >
+                Testimonial
+              </Link>
             </div>
           )}
-          <a className="block py-2 text-black">CONTACT</a>
-          <button className="bg-[#feaf39] text-white py-2 px-4 rounded">
+          <Link
+            to="/contact-us"
+            className="block py-2 text-white"
+            onClick={handleLinkClick}
+          >
+            CONTACT
+          </Link>
+          <Link
+            to="/book"
+            className="bg-[#feaf39] text-white py-2 px-4 rounded"
+            onClick={handleLinkClick}
+          >
             BOOK A TABLE
-          </button>
+          </Link>
         </div>
       )}
     </div>

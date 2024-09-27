@@ -6,7 +6,6 @@ import { Routes, Route } from "react-router-dom";
 
 // -- COMPONENTS
 import Layout from "./Layout";
-import Jumbotron from "./components/Jumbotron/Jumbotron";
 import InfoCardSection from "./infoCardSection/InfoCardSection";
 import AboutUsSection from "./aboutUsSection/AboutUsSection";
 import Menu from "./menu/Menu";
