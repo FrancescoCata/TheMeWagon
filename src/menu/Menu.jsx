@@ -85,7 +85,7 @@ export default function Menu() {
       <div className="text-center mb-8">
         <div className="flex items-center justify-center mb-4">
           <div className="w-12 h-[2px] bg-[#feaf39]"></div>
-          <p className="text-[#feaf39] font-medium px-2">Food Menu</p>
+          <p className="text-[#feaf39] font-medium px-2 font-pacifico text-xl">Food Menu</p>
           <div className="w-12 h-[2px] bg-[#feaf39]"></div>
         </div>
         <h2 className="text-[#0f172b] text-3xl font-semibold">

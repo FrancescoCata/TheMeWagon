@@ -69,7 +69,7 @@ export default function TestimonialSection() {
         <div className="text-center mb-4">
           <div className="flex items-center justify-center space-x-4">
             <div className="h-0.5 w-16 bg-[#feaf39]"></div>
-            <p className="text-[#feaf39]">Testimonial</p>
+            <p className="text-[#feaf39] font-pacifico text-xl">Testimonial</p>
             <div className="h-0.5 w-16 bg-[#feaf39]"></div>
           </div>
           <h2 className="text-3xl font-semibold text-gray-800">

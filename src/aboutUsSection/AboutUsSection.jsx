@@ -46,7 +46,7 @@ export default function AboutUsSection() {
         <div className="w-11/12 my-8 lg:my-0">
           <div>
             <div className="flex items-center mb-4">
-              <p className="text-[#feaf39] font-medium pr-2">About Us</p>
+              <p className="text-[#feaf39] font-medium font-pacifico pr-2 text-xl">About Us</p>
               <div className="w-12 h-[2px] bg-[#feaf39]"></div>
             </div>
             <h2 className="text-4xl font-bold text-black my-2">

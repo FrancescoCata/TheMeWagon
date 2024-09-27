@@ -47,7 +47,7 @@ export default function BookATable() {
         <div className="w-11/12 md:w-3/4">
           <div className="mb-8">
             <div className="flex items-center mb-2">
-              <p className="text-[#feaf39] font-medium pr-2">Reservation</p>
+              <p className="text-[#feaf39] font-medium pr-2 font-pacifico text-xl">Reservation</p>
               <div className="w-12 h-[2px] bg-[#feaf39]"></div>
             </div>
             <h2 className="text-3xl font-semibold">Book A Table Online</h2>

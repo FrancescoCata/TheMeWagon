@@ -1,4 +1,6 @@
 import { useState } from "react";
+// -- COMPONENTS
+import Map from '../components/map/Map'
 
 export default function ContactUs() {
   // State to hold form values
@@ -88,8 +90,7 @@ export default function ContactUs() {
         <div className="flex flex-col md:flex-row justify-center items-start space-y-8 md:space-y-0 md:space-x-12">
           {/* Left: Map placeholder */}
           <div className="w-full md:w-1/2 bg-gray-200 h-96 flex justify-center items-center">
-            {/* Placeholder for future map implementation */}
-            <p className="text-lg text-gray-500">Map Placeholder</p>
+            <Map/>
           </div>
 
           {/* Right: Contact Form */}

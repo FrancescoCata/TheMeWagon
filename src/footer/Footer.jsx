@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center space-x-4 mb-4">
-              <p className="text-[#feaf39]">Company</p>
+              <p className="text-[#feaf39] font-pacifico text-xl">Company</p>
               <div className="h-0.5 w-16 bg-[#feaf39]"></div>
             </div>
             <ul className="space-y-2">
@@ -35,7 +35,7 @@ export default function Footer() {
 
           <div>
             <div className="flex items-center space-x-4 mb-4">
-              <p className="text-[#feaf39]">Contact</p>
+              <p className="text-[#feaf39] font-pacifico text-xl">Contact</p>
               <div className="h-0.5 w-16 bg-[#feaf39]"></div>
             </div>
             <ul className="space-y-2">
@@ -62,7 +62,7 @@ export default function Footer() {
 
           <div>
             <div className="flex items-center space-x-4 mb-4">
-              <p className="text-[#feaf39]">Opening</p>
+              <p className="text-[#feaf39] font-pacifico text-xl">Opening</p>
               <div className="h-0.5 w-16 bg-[#feaf39]"></div>
             </div>
             <div className="mb-2">
@@ -79,7 +79,7 @@ export default function Footer() {
 
           <div>
             <div className="flex items-center space-x-4 mb-4">
-              <p className="text-[#feaf39]">Newsletter</p>
+              <p className="text-[#feaf39] font-pacifico text-xl">Newsletter</p>
               <div className="h-0.5 w-16 bg-[#feaf39]"></div>
             </div>
             <div className="relative">
