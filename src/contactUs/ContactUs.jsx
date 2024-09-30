@@ -41,7 +41,7 @@ export default function ContactUs() {
         {/* Titles */}
         <div className="flex items-center justify-center mb-4">
           <div className="w-12 h-[2px] bg-[#feaf39]"></div>
-          <p className="text-[#feaf39] font-medium px-2">Contact Us</p>
+          <p className="text-[#feaf39] font-medium px-2 font-pacifico text-xl">Contact Us</p>
           <div className="w-12 h-[2px] bg-[#feaf39]"></div>
         </div>
         <h3 className="text-4xl font-bold text-[#0f172b] mb-8">
@@ -52,7 +52,7 @@ export default function ContactUs() {
         <div className="flex flex-col md:flex-row justify-between items-start text-left space-y-6 md:space-y-0 mb-12">
           <div className="w-full md:w-1/3">
             <div className="flex items-center mb-4">
-              <h4 className="text-[#feaf39] font-medium pr-2">
+              <h4 className="text-[#feaf39] font-medium pr-2 font-pacifico text-xl">
                 General Inquiries
               </h4>
               <div className="w-12 h-[2px] bg-[#feaf39]"></div>
@@ -65,7 +65,7 @@ export default function ContactUs() {
 
           <div className="w-full md:w-1/3">
             <div className="flex items-center mb-4">
-              <h4 className="text-[#feaf39] font-medium pr-2">Support</h4>
+              <h4 className="text-[#feaf39] font-medium pr-2 font-pacifico text-xl">Support</h4>
               <div className="w-12 h-[2px] bg-[#feaf39]"></div>
             </div>
             <div className="flex items-center">
@@ -76,7 +76,7 @@ export default function ContactUs() {
 
           <div className="w-full md:w-1/3">
             <div className="flex items-center mb-4">
-              <h4 className="text-[#feaf39] font-medium pr-2">Partnerships</h4>
+              <h4 className="text-[#feaf39] font-medium pr-2 font-pacifico text-xl">Partnerships</h4>
               <div className="w-12 h-[2px] bg-[#feaf39]"></div>
             </div>
             <div className="flex items-center">
