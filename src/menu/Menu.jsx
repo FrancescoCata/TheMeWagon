@@ -1,72 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MenuInfoCard from "../components/menuInfoCard/MenuInfoCard";
 // import { FaCoffee, FaHamburger, FaUtensils } from "react-icons/fa";
-
-// Mocked Dishes
-const mockedDishes = [
-  {
-    img: "https://themewagon.github.io/restoran/img/menu-1.jpg",
-    dishName: "Chicken Burger",
-    price: "$115",
-    description: "Ipsum ipsum clita erat amet dolor justo diam",
-  },
-  {
-    img: "https://themewagon.github.io/restoran/img/menu-1.jpg",
-    dishName: "Chicken Burger",
-    price: "$115",
-    description: "Ipsum ipsum clita erat amet dolor justo diam",
-  },
-  {
-    img: "https://themewagon.github.io/restoran/img/menu-1.jpg",
-    dishName: "Chicken Burger",
-    price: "$115",
-    description: "Ipsum ipsum clita erat amet dolor justo diam",
-  },
-  {
-    img: "https://themewagon.github.io/restoran/img/menu-1.jpg",
-    dishName: "Chicken Burger",
-    price: "$115",
-    description: "Ipsum ipsum clita erat amet dolor justo diam",
-  },
-  {
-    img: "https://themewagon.github.io/restoran/img/menu-1.jpg",
-    dishName: "Chicken Burger",
-    price: "$115",
-    description: "Ipsum ipsum clita erat amet dolor justo diam",
-  },
-  {
-    img: "https://themewagon.github.io/restoran/img/menu-1.jpg",
-    dishName: "Chicken Burger",
-    price: "$115",
-    description: "Ipsum ipsum clita erat amet dolor justo diam",
-  },
-  {
-    img: "https://themewagon.github.io/restoran/img/menu-1.jpg",
-    dishName: "Chicken Burger",
-    price: "$115",
-    description: "Ipsum ipsum clita erat amet dolor justo diam",
-  },
-  {
-    img: "https://themewagon.github.io/restoran/img/menu-1.jpg",
-    dishName: "Chicken Burger",
-    price: "$115",
-    description: "Ipsum ipsum clita erat amet dolor justo diam",
-  },
-];
+import { getRestaurantMenu } from "../services/MenuService";
 
 export default function Menu() {
-  const [selectedMenu, setSelectedMenu] = useState("Breakfast");
+  const [selectedMenu, setSelectedMenu] = useState("Pizza");
+  const [dishes, setDishes] = useState([])
+
+  useEffect(() =>{
+    getDishes()
+  },[selectedMenu])
+
+  const getDishes = async () =>{
+    const res = await getRestaurantMenu(selectedMenu)
+    setDishes(res)
+  }
+
+  useEffect(() =>{
+    renderDishes()
+  },[dishes])
 
   const renderDishes = () => {
-    return mockedDishes.map((item, key) => (
-      <MenuInfoCard
-        key={key}
-        img={item.img}
-        dishName={item.dishName}
-        price={item.price}
-        dishDescription={item.description}
-      />
-    ));
+    if(dishes.length > 0){
+      return dishes.map((item, key) => (
+        <MenuInfoCard
+          key={key}
+          dishName={item.name}
+          price={item.price}
+        />
+      ));
+    }
   };
 
   const handleMenuClick = (menu) => {
@@ -74,9 +37,9 @@ export default function Menu() {
   };
 
   const menuItems = [
-    { label: "Breakfast", icon: 'fa fa-coffee' },
-    { label: "Lunch", icon: 'fa fa-coffee' },
-    { label: "Dinner", icon: 'fa fa-coffee' },
+    { label: "Pizza", icon: 'fa fa-coffee' },
+    { label: "Dryck", icon: 'fa fa-coffee' },
+    { label: "Tillbehör", icon: 'fa fa-coffee' },
   ];
 
   return (

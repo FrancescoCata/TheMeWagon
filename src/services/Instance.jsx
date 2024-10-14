@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://private-anon-a9e52669da-pizzaapp.apiary-mock.com/',
+  baseURL: 'http://18.194.21.216',
   headers: {
     'Content-Type': 'application/json',
   },

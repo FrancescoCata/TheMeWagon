@@ -14,11 +14,13 @@ import BookATable from "./bookATableSection/BookATableSection";
 import TeamSection from "./teamSection/TeamSection";
 import TestimonialSection from "./testimonialSection/TestimonialSection";
 import ContactUs from "./contactUs/ContactUs";
+import Login from "./components/login/Login";
 
+// Define your routes
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <App />,
+    path: "/", // Root path
+    element: <App />, // App component as the main layout
     children: [
       {
         path: "/about",
@@ -26,29 +28,33 @@ const router = createBrowserRouter([
       },
       {
         path: "/info",
-        element: <InfoCardSection />
+        element: <InfoCardSection />,
       },
       {
         path: "/menu",
-        element: <Menu />
+        element: <Menu />,
       },
       {
         path: "/book",
-        element: <BookATable />
+        element: <BookATable />,
       },
       {
         path: "/team",
-        element: <TeamSection />
+        element: <TeamSection />,
       },
       {
         path: "/testimonials",
-        element: <TestimonialSection />
+        element: <TestimonialSection />,
       },
       {
         path: "/contact-us",
-        element: <ContactUs />
-      }
+        element: <ContactUs />,
+      },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 
