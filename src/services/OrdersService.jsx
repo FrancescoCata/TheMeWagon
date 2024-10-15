@@ -1,21 +1,22 @@
 import instance from "./Instance";
 
-// Create a new order (POST)
-export const createOrder = async (orderData) => {
+// Get all bookings (GET)
+export const getBookings = async () => {
   try {
-    const response = await instance.post('/orders/', orderData);
+    const response = await instance.get('/api/bookings');
     return response.data;
   } catch (error) {
-    throw new Error('Error creating order:', error);
+    throw new Error('Error getting bookings:', error);
   }
 };
 
-// Fetch an order by its ID
-export const getOrderById = async (id) => {
-  try {
-    const response = await instance.get(`/orders/${id}`);
-    return response.data;
+// Create a new order (POST)
+export const createBooking = async (obj) =>{
+  try{
+    const response = await instance.post('/api/bookings', obj)
+    return response.data
   } catch (error) {
-    throw new Error(`Error fetching order with ID ${id}:`, error);
+    throw new Error('Error creating booking:', error);
   }
-};
+}
+
