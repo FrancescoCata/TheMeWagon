@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
-// API
-import { createBooking, getBookings, deleteBooking } from "../services/OrdersService";
+import {
+  createBooking,
+  getBookings,
+  deleteBooking,
+  updateBooking,
+} from "../services/OrdersService";
 
 export default function BookATable() {
   const [formData, setFormData] = useState({
@@ -12,13 +16,15 @@ export default function BookATable() {
   });
 
   const [bookings, setBookings] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentBookingId, setCurrentBookingId] = useState(null);
 
   // Fetch bookings from API on mount
   useEffect(() => {
     async function fetchBookings() {
       try {
-        const response = await getBookings(); // Get real bookings from API
-        setBookings(response.data); // Set the bookings from the API response
+        const response = await getBookings();
+        setBookings(response.data);
       } catch (error) {
         console.error("Error fetching bookings:", error);
       }
@@ -27,9 +33,9 @@ export default function BookATable() {
     fetchBookings();
   }, []);
 
-  useEffect(() =>{
-    renderBookings()
-  },[bookings])
+  useEffect(() => {
+    renderBookings();
+  }, [bookings]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,25 +49,21 @@ export default function BookATable() {
     const newBooking = {
       name: formData.name,
       email: formData.email,
-      num_people: Number(formData.people), // Convert string to number
+      num_people: Number(formData.people), 
       booking_date: formData.date,
       notes: formData.note,
     };
 
     try {
-      // Create a new booking
       await createBooking(newBooking);
-
-      // Refetch bookings after successful creation
       const updatedBookings = await getBookings();
       setBookings(updatedBookings.data);
 
-      // Clear the form (optional)
       setFormData({
         name: "",
         email: "",
         date: "",
-        people: "1", // Reset to string "1"
+        people: "1",
         note: "",
       });
     } catch (error) {
@@ -72,54 +74,84 @@ export default function BookATable() {
   // Handle delete booking
   const handleDelete = async (id) => {
     try {
-      // Simulate API call to delete booking
-      await deleteBooking(id)
-      const updatedBookings = await getBookings(); // Refetch after deletion
+      await deleteBooking(id);
+      const updatedBookings = await getBookings();
       setBookings(updatedBookings.data);
     } catch (error) {
       console.error("Error deleting booking:", error);
     }
   };
 
-  // Handle update booking
+  // Open modal to update booking
   const handleUpdate = (id) => {
-    alert(`Update booking with ID: ${id}`);
-    // Here you could implement a form modal to update the booking.
+    const bookingToEdit = bookings.find((booking) => booking.id === id);
+    if (bookingToEdit) {
+      setCurrentBookingId(id);
+      setIsModalOpen(true); 
+    }
   };
 
-  const renderBookings = () =>{
-    if(bookings.length > 0){
-      return bookings.map((booking) => {
-        console.log(booking)
-         return <div
-              key={booking.id}
-              className="p-4 bg-white shadow-lg rounded-lg flex flex-col justify-between"
-            >
-              <div>
-                <h3 className="text-lg font-semibold mb-2">{booking.name}</h3>
-                <p className="mb-1">Email: {booking.email}</p>
-                <p className="mb-1">People: {booking.num_people}</p>
-                <p className="mb-1">Date: {booking.booking_date}</p>
-                <p className="mb-2">Notes: {booking.notes}</p>
-              </div>
-              <div className="flex space-x-4">
-                <button
-                  onClick={() => handleUpdate(booking.id)}
-                  className="bg-[#feaf39] text-white px-4 py-2 rounded-lg"
-                >
-                  Modify
-                </button>
-                <button
-                  onClick={() => handleDelete(booking.id)}
-                  className="bg-red-500 text-white px-4 py-2 rounded-lg"
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-      })
+  // Confirm update booking
+  const confirmUpdate = async () => {
+    try {
+      const updatedBooking = {
+        name: formData.name,
+        email: formData.email,
+        num_people: Number(formData.people),
+        booking_date: formData.date,
+        notes: formData.note,
+      };
+      await updateBooking(currentBookingId, updatedBooking); 
+      const updatedBookings = await getBookings(); 
+      setBookings(updatedBookings.data);
+      setIsModalOpen(false); 
+      setCurrentBookingId(null);
+      setFormData({
+        name: "",
+        email: "",
+        date: "",
+        people: "1",
+        note: "",
+      });
+    } catch (error) {
+      console.error("Error updating booking:", error);
     }
-  }
+  };
+
+  const renderBookings = () => {
+    if (bookings.length > 0) {
+      return bookings.map((booking) => {
+        return (
+          <div
+            key={booking.id}
+            className="p-4 bg-white shadow-lg rounded-lg flex flex-col justify-between"
+          >
+            <div>
+              <h3 className="text-lg font-semibold mb-2">{booking.name}</h3>
+              <p className="mb-1">Email: {booking.email}</p>
+              <p className="mb-1">People: {booking.num_people}</p>
+              <p className="mb-1">Date: {booking.booking_date}</p>
+              <p className="mb-2">Notes: {booking.notes}</p>
+            </div>
+            <div className="flex space-x-4">
+              <button
+                onClick={() => handleUpdate(booking.id)}
+                className="bg-[#feaf39] text-white px-4 py-2 rounded-lg"
+              >
+                Modify
+              </button>
+              <button
+                onClick={() => handleDelete(booking.id)}
+                className="bg-red-500 text-white px-4 py-2 rounded-lg"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        );
+      });
+    }
+  };
 
   return (
     <div className="flex w-full flex-col">
@@ -234,6 +266,97 @@ export default function BookATable() {
           </div>
         </div>
       </div>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+            <h2 className="text-xl font-bold mb-4">Modify Booking</h2>
+            <form className="space-y-6">
+              <div className="flex flex-col md:flex-row md:space-x-4 space-y-6 md:space-y-0">
+                <div className="flex-grow">
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    placeholder="Your Name"
+                    className="w-full border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#feaf39] text-black"
+                  />
+                </div>
+                <div className="flex-grow">
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="Your Email"
+                    className="w-full border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#feaf39] text-black"
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col md:flex-row md:space-x-4 space-y-6 md:space-y-0">
+                <div className="flex-grow w-full md:w-6/12">
+                  <input
+                    type="datetime-local"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleChange}
+                    required
+                    className="w-full border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#feaf39] text-black"
+                  />
+                </div>
+                <div className="flex-grow w-full md:w-6/12">
+                  <select
+                    name="people"
+                    value={formData.people}
+                    onChange={handleChange}
+                    required
+                    className="w-full h-full border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#feaf39] text-black"
+                  >
+                    <option value="1">1 Person</option>
+                    <option value="2">2 People</option>
+                    <option value="3">3 People</option>
+                    <option value="4">4 People</option>
+                    <option value="5">5 People</option>
+                    <option value="6">6 People</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="flex-grow">
+                <textarea
+                  name="note"
+                  value={formData.note}
+                  onChange={handleChange}
+                  rows="4"
+                  placeholder="Special Request"
+                  className="w-full border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#feaf39] text-black"
+                />
+              </div>
+
+              <div className="flex justify-end space-x-4">
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="bg-gray-500 text-white py-2 px-4 rounded-lg"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={confirmUpdate}
+                  className="bg-[#feaf39] text-white py-2 px-4 rounded-lg"
+                >
+                  Confirm
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* My Bookings Section */}
       <div className="w-full bg-[#f8f8f8] p-6 mt-8">

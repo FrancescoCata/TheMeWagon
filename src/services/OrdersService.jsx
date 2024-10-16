@@ -29,3 +29,12 @@ export const deleteBooking = async (id) =>{
     throw new Error('Error deleting booking:', error);
   }
 }
+
+export const updateBooking = async (id, obj) =>{
+  try{
+    const response = await instance.put(`/api/bookings/${id}`, obj)
+    return response.data
+  } catch (error) {
+    throw new Error('Error updating booking:', error);
+  }
+}
