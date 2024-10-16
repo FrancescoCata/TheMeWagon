@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 // API
-import { createBooking, getBookings } from "../services/OrdersService";
+import { createBooking, getBookings, deleteBooking } from "../services/OrdersService";
 
 export default function BookATable() {
   const [formData, setFormData] = useState({
@@ -73,9 +73,9 @@ export default function BookATable() {
   const handleDelete = async (id) => {
     try {
       // Simulate API call to delete booking
-      // await deleteBooking(id);
+      await deleteBooking(id)
       const updatedBookings = await getBookings(); // Refetch after deletion
-      setBookings(updatedBookings);
+      setBookings(updatedBookings.data);
     } catch (error) {
       console.error("Error deleting booking:", error);
     }

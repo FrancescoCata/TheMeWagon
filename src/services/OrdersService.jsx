@@ -20,3 +20,12 @@ export const createBooking = async (obj) =>{
   }
 }
 
+// Delete a booking (DELETE)
+export const deleteBooking = async (id) =>{
+  try{
+    const response = await instance.delete(`/api/bookings/${id}`)
+    return response.data
+  } catch (error) {
+    throw new Error('Error deleting booking:', error);
+  }
+}
