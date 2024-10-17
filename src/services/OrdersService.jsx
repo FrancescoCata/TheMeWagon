@@ -38,3 +38,12 @@ export const updateBooking = async (id, obj) =>{
     throw new Error('Error updating booking:', error);
   }
 }
+
+export const findBooking = async (id) =>{
+  try{
+    const response = await instance.get(`/api/bookings/${id}`)
+    return response.data
+  } catch (error) {
+    throw new Error('Error searching booking:', error);
+  }
+}

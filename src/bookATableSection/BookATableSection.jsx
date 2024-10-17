@@ -4,6 +4,7 @@ import {
   getBookings,
   deleteBooking,
   updateBooking,
+  findBooking,
 } from "../services/OrdersService";
 
 export default function BookATable() {
@@ -18,6 +19,8 @@ export default function BookATable() {
   const [bookings, setBookings] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentBookingId, setCurrentBookingId] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchedBooking, setSearchedBooking] = useState(null);
 
   // Fetch bookings from API on mount
   useEffect(() => {
@@ -49,7 +52,7 @@ export default function BookATable() {
     const newBooking = {
       name: formData.name,
       email: formData.email,
-      num_people: Number(formData.people), 
+      num_people: Number(formData.people),
       booking_date: formData.date,
       notes: formData.note,
     };
@@ -87,7 +90,25 @@ export default function BookATable() {
     const bookingToEdit = bookings.find((booking) => booking.id === id);
     if (bookingToEdit) {
       setCurrentBookingId(id);
-      setIsModalOpen(true); 
+      setIsModalOpen(true);
+    }
+  };
+
+  // Handle search input and fetch booking by ID
+  const handleSearch = async (e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+
+    if (value) {
+      try {
+        const foundBooking = await findBooking(value);
+        setSearchedBooking(foundBooking.data); 
+      } catch (error) {
+        console.error("Error searching booking:", error);
+        setSearchedBooking(null);
+      }
+    } else {
+      setSearchedBooking(null); 
     }
   };
 
@@ -101,10 +122,10 @@ export default function BookATable() {
         booking_date: formData.date,
         notes: formData.note,
       };
-      await updateBooking(currentBookingId, updatedBooking); 
-      const updatedBookings = await getBookings(); 
+      await updateBooking(currentBookingId, updatedBooking);
+      const updatedBookings = await getBookings();
       setBookings(updatedBookings.data);
-      setIsModalOpen(false); 
+      setIsModalOpen(false);
       setCurrentBookingId(null);
       setFormData({
         name: "",
@@ -119,6 +140,39 @@ export default function BookATable() {
   };
 
   const renderBookings = () => {
+    // Render only the searched booking if a search query is present
+    if (searchQuery && searchedBooking) {
+      return (
+        <div
+          key={searchedBooking.id}
+          className="p-4 bg-white shadow-lg rounded-lg flex flex-col justify-between"
+        >
+          <div>
+            <h3 className="text-lg font-semibold mb-2">
+              {searchedBooking.name}
+            </h3>
+            <p className="mb-1">Email: {searchedBooking.email}</p>
+            <p className="mb-1">People: {searchedBooking.num_people}</p>
+            <p className="mb-1">Date: {searchedBooking.booking_date}</p>
+            <p className="mb-2">Notes: {searchedBooking.notes}</p>
+          </div>
+          <div className="flex space-x-4">
+            <button
+              onClick={() => handleUpdate(searchedBooking.id)}
+              className="bg-[#feaf39] text-white px-4 py-2 rounded-lg"
+            >
+              Modify
+            </button>
+            <button
+              onClick={() => handleDelete(searchedBooking.id)}
+              className="bg-red-500 text-white px-4 py-2 rounded-lg"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      );
+    }
     if (bookings.length > 0) {
       return bookings.map((booking) => {
         return (
@@ -360,7 +414,14 @@ export default function BookATable() {
 
       {/* My Bookings Section */}
       <div className="w-full bg-[#f8f8f8] p-6 mt-8">
-        <h2 className="text-2xl font-bold mb-4">My Bookings</h2>
+        <div className="flex w-full justify-between">
+          <h2 className="text-2xl font-bold mb-4">My Bookings</h2>
+          <input
+            type="text"
+            placeholder="Search booking by ID"
+            onChange={handleSearch}
+          />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {renderBookings()}
         </div>
