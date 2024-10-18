@@ -1,46 +1,69 @@
-import React, { useState, useEffect, act } from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import TestimonialCard from "../components/testimonialCard/TestimonialCard";
-
-// Mocked array of clients
-const clientsArr = [
-  {
-    quote:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur, magnam!",
-    img: "https://themewagon.github.io/restoran/img/testimonial-1.jpg",
-    name: "Client Name 1",
-    role: "Profession",
-  },
-  {
-    quote:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur, magnam!",
-    img: "https://themewagon.github.io/restoran/img/testimonial-2.jpg",
-    name: "Client Name 2",
-    role: "Profession",
-  },
-  {
-    quote:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur, magnam!",
-    img: "https://themewagon.github.io/restoran/img/testimonial-3.jpg",
-    name: "Client Name 3",
-    role: "Profession",
-  },
-  {
-    quote:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur, magnam!",
-    img: "https://themewagon.github.io/restoran/img/testimonial-2.jpg",
-    name: "Client Name 4",
-    role: "Profession",
-  },
-];
+import { getReviews, postReview } from "../services/ReviewsService";
 
 export default function TestimonialSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [slidesPerView, setSlidesPerView] = useState(1);
+  const [reviews, setReviews] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [review, setReview] = useState({
+    customer_name: "",
+    customer_job: "",
+    text: "",
+  });
+
+  const fetchReviews = async () => {
+    try {
+      const data = await getReviews();
+      setReviews(data.data);
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+    }
+  };
+  // Fetch reviews when the component mounts
+  useEffect(() => {
+    fetchReviews();
+  }, []);
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setReview({
+      ...review,
+      [name]: value,
+    });
+  };
+
+  const handlePost = async () => {
+    try {
+      // Post the new review
+      await postReview(review);
+
+      // Clear the form
+      setReview({
+        customer_name: "",
+        customer_job: "",
+        text: ""
+      });
+
+      // Close the modal
+      toggleModal();
+
+      // Refetch reviews after the new one is posted
+      await fetchReviews();
+    } catch (error) {
+      console.error("Error posting review:", error);
+    }
+  };
 
   // Adjust slidesPerView based on the screen size
   useEffect(() => {
@@ -64,7 +87,7 @@ export default function TestimonialSection() {
 
   return (
     <div className="bg-gray-100 py-16">
-      <div className="container mx-auto text-center mb-8">
+      <div className="container mx-auto text-center mb-8 relative">
         {/* Section Title */}
         <div className="text-center mb-4">
           <div className="flex items-center justify-center space-x-4">
@@ -76,6 +99,85 @@ export default function TestimonialSection() {
             Our Clients Say!!!
           </h2>
         </div>
+
+        {/* Button to open modal */}
+        <button
+          className="absolute top-10 right-10 bg-[#feaf39] text-white px-4 py-2 rounded"
+          onClick={toggleModal}
+        >
+          Add Review
+        </button>
+
+        {/* Modal */}
+        {isModalOpen && (
+          <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
+            <div className="bg-white p-8 rounded shadow-lg max-w-md w-full relative">
+              <h3 className="text-2xl font-semibold mb-4">
+                Submit Testimonial
+              </h3>
+
+              {/* Form Inputs */}
+              <form className="space-y-4">
+                <div>
+                  <label className="block text-left font-semibold">
+                    Customer Name
+                  </label>
+                  <input
+                    type="text"
+                    name="customer_name"
+                    value={review.customer_name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full border border-gray-300 p-2 rounded"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-left font-semibold">
+                    Customer Job
+                  </label>
+                  <input
+                    type="text"
+                    name="customer_job"
+                    value={review.customer_job}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full border border-gray-300 p-2 rounded"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-left font-semibold">
+                    Testimonial Text
+                  </label>
+                  <textarea
+                    name="text"
+                    value={review.text}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full border border-gray-300 p-2 rounded"
+                  />
+                </div>
+              </form>
+
+              {/* Modal Buttons */}
+              <div className="mt-6 flex justify-between">
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded"
+                  onClick={toggleModal}
+                >
+                  Close
+                </button>
+                <button
+                  className="bg-[#feaf39] text-white px-4 py-2 rounded"
+                  onClick={handlePost}
+                >
+                  POST
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       <Swiper
@@ -95,7 +197,7 @@ export default function TestimonialSection() {
         }}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
       >
-        {clientsArr.map((item, index) => {
+        {reviews.map((item, index) => {
           const isMiddleCard = index === activeIndex;
 
           return (
@@ -106,10 +208,12 @@ export default function TestimonialSection() {
               }`}
             >
               <TestimonialCard
-                quote={item.quote}
-                fullName={item.name}
-                role={item.role}
-                img={item.img}
+                quote={item.text}
+                fullName={item.customer_name}
+                role={item.customer_job}
+                img={
+                  "https://themewagon.github.io/restoran/img/testimonial-1.jpg"
+                }
                 isActive={isMiddleCard} // Highlight middle card
               />
             </SwiperSlide>
