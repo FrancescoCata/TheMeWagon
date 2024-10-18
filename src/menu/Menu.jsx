@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import MenuInfoCard from "../components/menuInfoCard/MenuInfoCard";
 import { getRestaurantMenu } from "../services/MenuService";
 
@@ -24,9 +24,9 @@ export default function Menu() {
     return null;
   }, [dishes]);
 
-  const handleMenuClick = (menu) => {
+  const handleMenuClick = useCallback((menu) => {
     setSelectedMenu(menu);
-  };
+  }, []);
 
   const menuItems = [
     { label: "Pizza", icon: "fa fa-coffee" },
